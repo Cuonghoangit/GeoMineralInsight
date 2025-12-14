@@ -1,137 +1,105 @@
-# AI-Driven Mineral Targeting in Karnataka-Andhra Pradesh  
-*Leveraging Geoscience Data and Machine Learning to Discover Concealed Mineral Deposits*  
+# GeoMineralInsight 🌍🔍
+
+![GeoMineralInsight](https://img.shields.io/badge/GeoMineralInsight-Ready-brightgreen)
+
+Welcome to the **GeoMineralInsight** repository! This project employs machine learning to analyze geological, geochemical, aeromagnetic, and remote sensing data across 39,000 sq. km in southern India. Our goal is to identify high-probability zones for concealed gold (Au), copper (Cu), and platinum group elements (PGE) deposits. We utilize advanced techniques such as XGBoost, SHAP, and GeoPandas to achieve this.
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
+- [Contact](#contact)
+
+## Project Overview
+
+GeoMineralInsight focuses on enhancing mineral exploration through data-driven approaches. The project integrates various data sources to provide insights that can guide exploration efforts. By leveraging machine learning algorithms, we aim to minimize the risk and cost associated with mineral exploration.
+
+## Key Features
+
+- **Automated Pipelines**: Streamline the data processing workflow to ensure efficiency and accuracy.
+- **Explainable AI**: Use SHAP to interpret model predictions, making results understandable and actionable.
+- **GIS-Ready Maps**: Generate maps that can be easily integrated into Geographic Information Systems for further analysis.
+- **High-Probability Zone Identification**: Pinpoint areas with the highest likelihood of mineral deposits using XGBoost.
+- **Data Integration**: Combine geological, geochemical, and remote sensing data for comprehensive analysis.
+
+## Technologies Used
+
+This project employs a variety of technologies and libraries:
+
+- **Python**: The primary programming language for data analysis and machine learning.
+- **XGBoost**: A powerful machine learning algorithm for classification and regression tasks.
+- **SHAP**: A tool for interpreting the output of machine learning models.
+- **GeoPandas**: An extension of Pandas for geospatial data analysis.
+- **Rasterio**: For reading and writing geospatial raster data.
+- **Machine Learning Libraries**: Scikit-learn and others for additional machine learning functionalities.
+
+## Installation
+
+To get started with GeoMineralInsight, follow these steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Cuonghoangit/GeoMineralInsight.git
+   cd GeoMineralInsight
+   ```
+
+2. **Install Required Packages**:
+   Use pip to install the necessary libraries.
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Set Up Environment**:
+   Ensure you have Python 3.6 or higher installed. Create a virtual environment for better package management.
+
+## Usage
+
+To use GeoMineralInsight, follow these steps:
+
+1. **Data Preparation**:
+   Ensure your geological, geochemical, and remote sensing data is formatted correctly. Place your data files in the `data/` directory.
+
+2. **Run the Analysis**:
+   Execute the main script to start the analysis.
+   ```bash
+   python main.py
+   ```
+
+3. **View Results**:
+   The results will be saved in the `results/` directory. Check the generated maps and model outputs.
+
+## Contributing
+
+We welcome contributions from the community! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch and create a pull request.
+
+Please ensure your code adheres to the project's coding standards and includes relevant tests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+For the latest releases and updates, please visit our [Releases](https://github.com/Cuonghoangit/GeoMineralInsight/releases) section. You can download the latest version of the project from there.
+
+## Contact
+
+For any questions or inquiries, feel free to reach out:
+
+- **Author**: [Cuong Hoang](https://github.com/Cuonghoangit)
+- **Email**: cuong@example.com
 
 ---
 
-## 📌 Table of Contents  
-1. [Project Overview](#-project-overview)  
-2. [Key Features](#-key-features)  
-3. [Directory Structure](#-directory-structure)  
-4. [Setup Instructions](#-setup-instructions)  
-5. [Methodology](#-methodology)  
-6. [Results](#-results)  
-7. [Deliverables](#-deliverables)  
-8. [Future Work](#-future-work)  
-
----
-
-## 🌍 Project Overview  
-**Objective**: Identify concealed mineral deposits (Au, Cu, PGEs) in a 39,000 sq. km area using AI/ML.  
-**Datasets**: Geological (GSI 25K/50K), Geochemical (NGCM), Aeromagnetic, ASTER Remote Sensing.  
-**Tech Stack**: Python, Scikit-learn, XGBoost, GeoPandas, Rasterio, SHAP.  
-
----
-
-## ✨ Key Features  
-- **Automated Data Pipeline**: Integration of multi-source geoscience data.  
-- **Feature Engineering**: Geochemical ratios, fault proximity, spectral indices.  
-- **Explainable AI**: SHAP values for model transparency.  
-- **3D-Ready Outputs**: Predictive maps compatible with QGIS/ArcGIS.  
-
----
-
-## 📂 Directory Structure  
-```bash
-project-root/
-├── datasets/               # Raw geoscience data from GSI
-├── final_datasets/         # Processed CSVs/shapefiles
-├── images/                 # Visualizations (EDA, results)
-├── notebooks/              # Jupyter notebooks (EDA → Modeling)
-└── venv/                   # Conda environment
-```
----
-
-## 🛠 Setup Instructions  
-### **Option 1: Conda (Recommended)**  
-```bash
-conda create -p ./venv python=3.12 -y
-conda activate ./venv
-pip install -r requirements.txt
-```
-
-### **Option 2: Virtualenv**  
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac | venv\Scripts\activate on Windows
-pip install -r requirements.txt
-```
-
-### **Libraries Installed**  
-```text
-geopandas, rasterio, scikit-learn, xgboost, shap, matplotlib, seaborn
-```
-
----
-
-## 🔍 Methodology  
-### **1. Data Preprocessing**  
-- **Geochemical Data**: Log-transformed skewed elements (Cu, Au).  
-  ![Cu Distribution](images/cu_distribution.png)  
-- **Spatial Alignment**: Reprojected all layers to UTM Zone 43N.  
-  ![Lithology Map](images/lithology_map.png)  
-
-### **2. Feature Engineering**  
-| Feature Type          | Example                  | Significance               |  
-|-----------------------|--------------------------|----------------------------|  
-| Geochemical Ratios    | `Cu/Zn`, `Ni/Cr`         | Indicator of mineralization|  
-| Structural Proximity  | `Distance to Faults`     | Controls fluid pathways    |  
-| Spectral Indices      | `Clay/Silica Ratio`      | Hydrothermal alteration    |  
-
-![Clay/Silica Ratio](images/clay_silica_ratio.png)  
-
-### **3. Model Building**  
-- **Algorithms**: Random Forest (AUC: 0.89) vs. XGBoost (AUC: 0.91).  
-- **Validation**: 78% of high-probability points matched GSI’s known blocks.  
-
-![Confusion Matrix](images/confusion_matrix.png)  
-
----
-
-
-## 📊 Results  
-### **1. Predictive Maps**  
-![Prospectivity Map](images/prospectivity_map.png)  
-- **Hotspots**: 12 new target zones identified.  
-
-### **2. Feature Importance**  
-![XGBoost Feature Importance](images/xgb_feature_importance.png)  
-- **Top Predictors**: `Cu_ppm`, `Magnetic_Anomaly`, `Clay_Index`.  
-
-### **3. 3D Depth Modeling (Conceptual)**  
-*Gravity inversion for depth estimates*:  
-```python
-# Pseudocode: SimPEG inversion
-survey = gravity.survey.Survey(...)
-model = gravity.Inversion.run(...)
-```
-![Magnetic Gradient](images/magnetic_gradient.png)  
-
----
-
-## 📦 Deliverables  
-1. **Code**: [GitHub Repo](#) (Notebooks + scripts).  
-2. **Reports**:  
-   - [Technical Report](report.pdf) (PDF).  
-   - [Presentation Slides](presentation.pptx).  
-3. **GIS Outputs**:  
-   - `final_prospectivity_map.shp` (QGIS/ArcGIS).  
-   - `mineral_probability_map.csv`.  
-
----
-
-## 🚀 Future Work  
-- **Borehole Integration**: Calibrate depth models with drill data.  
-- **Web App**: Deploy with `Streamlit` for interactive exploration.  
-- **Multi-Model Ensemble**: Improve robustness with hybrid ML approaches.  
-
----
-
-## 🔗 References  
-- [GSI Data Portal](https://www.gsi.gov.in/)  
-- [ASTER Spectral Indices Guide](https://asterweb.jpl.nasa.gov/)  
-
----
-
-**🌟 Hackathon Submission by Team GeoSurfers**  
-*Powered by Python and Open Geoscience Data*  
-
+Thank you for your interest in GeoMineralInsight! We look forward to your contributions and hope this project aids in advancing mineral exploration efforts.
